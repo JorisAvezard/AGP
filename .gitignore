@@ -1,0 +1,7 @@
+# Les fichiers à ignorer sur le projet java
+# Ignorer tous les fichiers .classpath
+*.classpath
+# Ignorer tous les fichiers .project
+*.project
+# Ignorer les dossiers .settings
+*.settings
