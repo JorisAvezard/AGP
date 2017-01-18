@@ -22,4 +22,8 @@ public abstract class Transport {
 		return timeOfUse;
 	}
 
+	@Override
+	public String toString() {
+		return "Transport [pricePerHour=" + pricePerHour + ", timeOfUse=" + timeOfUse + "]";
+	}
 }

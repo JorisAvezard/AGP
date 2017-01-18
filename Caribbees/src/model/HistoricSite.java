@@ -6,7 +6,7 @@ public class HistoricSite extends TouristicSite {
 		
 	}
 	
-	public HistoricSite(String id, String name, String idIsle, int price, int visitTime) {
+	public HistoricSite(String id, String name, String idIsle, String price, String visitTime) {
 		super(id, name, idIsle, price, visitTime);
 	}
 

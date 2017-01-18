@@ -4,7 +4,7 @@ package persistence;
  * 
  * @author phcar
  * 
- * Here is the class to test the simulation
+ * Here is the class to test the JDBC simulation
  *
  */
 public class TestSimulation {
@@ -14,14 +14,16 @@ public class TestSimulation {
 		
 		String price="50";
 		
-		simulation.countSite();
+		int total=3;
 		
-//		System.out.println("hello1");
+		simulation.readSite(total);
+		
+		//simulation.countSite();
+		
+		//System.out.println("hello1");
 				
-		simulation.readHotel(price);
+		//simulation.readHotel(price);
 		
-//		System.out.println("hello2");
-
 	}
 
 }

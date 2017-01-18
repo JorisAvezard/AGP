@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import model.Activity;
+import model.HistoricSite;
 import model.Hotel;
 
 /**
@@ -109,6 +111,77 @@ public class JdbcPersistence implements StatisticPersistence {
 		
 		
 		return readHotel;
+	}
+	
+	/**
+	 * This method returns a limit of number of Historistic site
+	 */
+	@Override
+	public HistoricSite readSite(int numberOfHistoricSites) {
+		HistoricSite readSite = new HistoricSite();
+		try {
+
+			String selectHistoricSiteQuery = "SELECT * FROM TouristicSites AS ts WHERE ts.type_site ='HistoricSite' LIMIT " 
+												+ numberOfHistoricSites + "";
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(selectHistoricSiteQuery);
+	
+			ResultSet result = preparedStatement.executeQuery();
+
+			while (result.next()) {
+				readSite.setId(result.getString("id_site"));
+				readSite.setName(result.getString("name_site"));
+				readSite.setPrice(result.getString("price"));
+				readSite.setVisitTime(result.getString("visit_time"));
+				
+				System.out.println(readSite.toString());
+			}
+
+			
+			preparedStatement.close();
+
+		} catch (SQLException se) {
+			System.err.println(se.getMessage());
+		}
+		
+		
+		return readSite;
+	}
+	
+	/**
+	 * This method returns a limit of number of activity
+	 */
+	@Override
+	public Activity readActivity(int numberOfSearchActivity) {
+		Activity readActivity = new Activity();
+		try {
+
+			String selectActivityQuery = "SELECT * FROM TouristicSites AS ts WHERE ts.type_site ='HistoricSite' LIMIT " 
+												+ numberOfSearchActivity + "";
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(selectActivityQuery);
+
+			ResultSet result = preparedStatement.executeQuery();
+
+			while (result.next()) {
+				readActivity.setId(result.getString("id_site"));
+				readActivity.setName(result.getString("name_site"));
+				readActivity.setPrice(result.getString("price"));
+				readActivity.setVisitTime(result.getString("visit_time"));
+				
+				System.out.println(readActivity.toString());
+				
+			}
+
+			
+			preparedStatement.close();
+
+		} catch (SQLException se) {
+			System.err.println(se.getMessage());
+		}
+		
+		
+		return readActivity;
 	}
 
 }

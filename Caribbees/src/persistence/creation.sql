@@ -1,4 +1,4 @@
-
+-- file to copy in your database
 
 CREATE TABLE TouristicSites (
 	id_site INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -49,8 +49,7 @@ CREATE TABLE TransitTimeSH (
 	end_place varchar(50),
 	transit_time varchar(20),
 	FOREIGN KEY (begin_place) REFERENCES TouristicSites(name_site),
-	
-		FOREIGN KEY (end_place) REFERENCES Hotel(name_hotel)
+	FOREIGN KEY (end_place) REFERENCES Hotel(name_hotel)
 );
 
 -- insertion isle
@@ -58,9 +57,7 @@ CREATE TABLE TransitTimeSH (
 insert into isle (name_isle) values ('guadeloupe'),('Dominique'), ('Anguilla'), ('saba'), ('barbuda'),('Antigua'), ('redonda'), ('barbade'), ('Ronde'), ('Coche'), ('Aruba');
 
 
-
 insert into Hotel (name_hotel,id_isle,standing,price_per_night) values
-
 ('Jungle Bay Resort & Spa','2','2','40')
 ,('Pirate','2','2','60')
 ,('Rosalie Bay Resort','2','4','80')
@@ -93,3 +90,15 @@ insert into touristicSites (name_site,id_isle,type_site,price,visit_time) values
 ('Monument aux morts','1','HistoricSite','35','2'),
 ('Dutch Museum Saba','4','HistoricSite','45','2'),
 ('water skiing','4','Activity','60','2');
+
+INSERT INTO TouristicSites (name_site, id_isle, price, visit_time)
+ VALUES
+ ('AAA', 2, 15, 3),
+ ('BBB', 4, 5, 2),
+ ('CCC', 4, 5, 2);
+ 
+ INSERT INTO Hotel (name_hotel, id_isle, standing, price_per_night )
+ VALUES
+ ('Hotel1', 2, 2, 50),
+ ('Hotel2', 6, 5, 150),
+ ('Hotel3', 3, 4, 50);
