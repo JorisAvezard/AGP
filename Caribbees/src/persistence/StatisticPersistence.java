@@ -1,8 +1,10 @@
 package persistence;
 
-import model.Activity;
-import model.Hotel;
-import model.TouristicSite;
+import java.util.List;
+
+import business.model.Activity;
+import business.model.Hotel;
+import business.model.TouristicSite;
 
 /**
  * 
@@ -15,7 +17,7 @@ import model.TouristicSite;
 public interface StatisticPersistence {
 
 	int countSite();
-	Hotel readHotel(String priceHotel);
+	List<Hotel> readHotel(String priceHotel);
 	TouristicSite readSite(int numberOfSites);
 	Activity readActivity(int numberOfSites);
 }

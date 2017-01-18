@@ -3,16 +3,18 @@ package business.model;
 public class Hotel {
 	
 	private String id;
+	private String name;
 	private String idIsle;
 	private String standing;
-	private int price;
+	private String price;
 	
 	public Hotel() {
 		
 	}
 	
-	public Hotel(String id, String idIsle, String standing, int price) {
+	public Hotel(String id, String name, String idIsle, String standing, String price) {
 		this.id = id;
+		this.name = name;
 		this.idIsle = idIsle;
 		this.standing = standing;
 		this.price = price;
@@ -42,12 +44,20 @@ public class Hotel {
 		this.standing = standing;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

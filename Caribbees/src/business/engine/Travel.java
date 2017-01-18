@@ -34,4 +34,12 @@ public class Travel {
 	public List<Hotel> getHotel() {
 		return hotels;
 	}
+	
+	public void addHotel(Hotel hotel) {
+		hotels.add(hotel);
+	}
+	
+	public void addExcursion(Excursion excursion) {
+		excursions.add(excursion);
+	}
 }

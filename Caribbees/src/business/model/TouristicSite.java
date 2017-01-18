@@ -5,14 +5,14 @@ public abstract class TouristicSite {
 	String id;
 	String name;
 	String idIsle;
-	int price;
-	int visitTime;
+	String price;
+	String visitTime;
 	
 	public TouristicSite() {
 		
 	}
 	
-	public TouristicSite(String id, String name, String idIsle, int price, int visitTime) {
+	public TouristicSite(String id, String name, String idIsle, String price, String visitTime) {
 		this.id = id;
 		this.name = name;
 		this.idIsle = idIsle;
@@ -44,19 +44,19 @@ public abstract class TouristicSite {
 		this.idIsle = idIsle;
 	}
 	
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 	
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 	
-	public int getVisitTime() {
+	public String getVisitTime() {
 		return visitTime;
 	}
 	
-	public void setVisitTime(int visitTime) {
+	public void setVisitTime(String visitTime) {
 		this.visitTime = visitTime;
 	}
 

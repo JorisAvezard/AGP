@@ -14,22 +14,46 @@ public class Excursion {
 	public void addSite(TouristicSite site) {
 		sites.add(site);
 	}
+
+	public List<TouristicSite> getSites() {
+		return sites;
+	}
+
+	public void setSites(List<TouristicSite> sites) {
+		this.sites = sites;
+	}
 	
 	public void addTransport(Transport transport) {
 		transports.add(transport);
 	}
-	
-	public int calculatePrice() {
-		int price = 0;
-		for(int i=0; i<sites.size(); i++) {
-			TouristicSite site = sites.get(i);
-			price += site.getPrice();
-		}
-		for(int j=0; j<transports.size(); j++) {
-			Transport transport = transports.get(j);
-			price += transport.getPricePerHour() * transport.getTimeOfUse();
-		}
-		return price;
+
+	public List<Transport> getTransports() {
+		return transports;
 	}
+
+	public void setTransports(List<Transport> transports) {
+		this.transports = transports;
+	}
+	
+	
+	
+//	public int calculatePrice() {
+//		int price = 0;
+//		for(int i=0; i<sites.size(); i++) {
+//			TouristicSite site = sites.get(i);
+//			price += site.getPrice();
+//		}
+//		for(int j=0; j<transports.size(); j++) {
+//			Transport transport = transports.get(j);
+//			price += transport.getPricePerHour() * transport.getTimeOfUse();
+//		}
+//		return price;
+//	}
+	
+//	public void createExcursion() {
+//		
+//	}
+	
+	
 
 }

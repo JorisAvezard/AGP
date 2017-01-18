@@ -5,10 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import model.Activity;
-import model.HistoricSite;
-import model.Hotel;
+import business.model.Activity;
+import business.model.HistoricSite;
+import business.model.Hotel;
 
 /**
  * @author phcar
@@ -76,8 +78,9 @@ public class JdbcPersistence implements StatisticPersistence {
 	 * This method returns every hotels which respect the price
 	 */
 	@Override
-	public Hotel readHotel(String priceHotel) {
+	public List<Hotel> readHotel(String priceHotel) {
 		Hotel readHotel = new Hotel();
+		List<Hotel> hotels = new ArrayList<Hotel>();
 		try {
 
 			String selectHotelQuery = "SELECT * FROM Hotel AS h WHERE h.price_per_night = ?";
@@ -90,9 +93,11 @@ public class JdbcPersistence implements StatisticPersistence {
 
 			while (result.next()) {
 				readHotel.setId(result.getString("id"));
+				readHotel.setName(result.getString("name_hotel"));
 				readHotel.setIdIsle(result.getString("id_isle"));
 				readHotel.setStanding(result.getString("standing"));
 				readHotel.setPrice(result.getString("price_per_night"));
+				hotels.add(readHotel);
 				
 				System.out.println(readHotel.toString());
 				
@@ -110,7 +115,7 @@ public class JdbcPersistence implements StatisticPersistence {
 		}
 		
 		
-		return readHotel;
+		return hotels;
 	}
 	
 	/**
