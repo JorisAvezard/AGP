@@ -1,19 +1,18 @@
 -- file to copy in your database
 
+CREATE TABLE Isle (
+	id_isle INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	name_isle VARCHAR(20)
+);
+
 CREATE TABLE TouristicSites (
 	id_site INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	name_site VARCHAR(50),
 	id_isle varchar(20),
 	type_site ENUM('Activity','HistoricSite'),
-    price varchar(20),
+        price varchar(20),
 	visit_time varchar(20),
 	FOREIGN KEY (id_isle) REFERENCES id_isle(Isle)
-);
-
-
-CREATE TABLE Isle (
-	id_isle INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	name_isle VARCHAR(20)
 );
 
 CREATE TABLE Transport (
