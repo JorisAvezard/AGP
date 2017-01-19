@@ -8,7 +8,6 @@ public class Boat extends Transport {
 	
 	public Boat(int pricePerHour, int timeOfUse) {
 		super(pricePerHour, timeOfUse);
-		pricePerHour = 10;
 	}
 
 }

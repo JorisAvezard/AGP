@@ -16,6 +16,10 @@ public class BDeManager {
 	public BDeManager() {
 		
 	}
+	
+	public void addSite(TouristicSite site) {
+		sites.add(site);
+	}
 
 	public List<TouristicSite> getSite() {
 		return sites;
@@ -32,4 +36,16 @@ public class BDeManager {
 	public void setHotels(List<Hotel> hotels) {
 		this.hotels = hotels;
 	}
+
+	public String toStringHotels() {
+		return "BDeManager [getHotels()="
+				+ getHotels() + "]";
+	}
+	
+	public String toStringSites() {
+		return "BDeManager [getSite()="
+				+ getSite() + "]";
+	}
+	
+	
 }

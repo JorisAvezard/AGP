@@ -10,4 +10,12 @@ public class Activity extends TouristicSite {
 		super(id, name, idIsle, price, visitTime);
 	}
 
+	@Override
+	public String toString() {
+		return "Activity [id=" + id + ", name=" + name + ", idIsle=" + idIsle + ", price=" + price + ", visitTime="
+				+ visitTime + "]";
+	}
+	
+	
+
 }

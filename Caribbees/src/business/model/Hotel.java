@@ -60,4 +60,12 @@ public class Hotel {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "Hotel [id=" + id + ", name=" + name + ", idIsle=" + idIsle + ", standing=" + standing + ", price="
+				+ price + "]";
+	}
+	
+	
+
 }

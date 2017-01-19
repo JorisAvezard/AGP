@@ -1,5 +1,10 @@
 package persistence;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import business.model.TouristicSite;
+
 /**
  * 
  * @author phcar
@@ -16,7 +21,11 @@ public class TestSimulation {
 		
 		int total=3;
 		
-		simulation.readSite(total);
+		List<TouristicSite> site = new ArrayList<TouristicSite>();
+		site = simulation.readSite(total);
+		for(int i=0; i<site.size(); i++) {
+			System.out.println(site.get(i).toString());
+		}
 		
 		//simulation.countSite();
 		

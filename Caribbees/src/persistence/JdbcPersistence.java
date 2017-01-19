@@ -11,6 +11,7 @@ import java.util.List;
 import business.model.Activity;
 import business.model.HistoricSite;
 import business.model.Hotel;
+import business.model.TouristicSite;
 
 /**
  * @author phcar
@@ -22,7 +23,7 @@ import business.model.Hotel;
 public class JdbcPersistence implements StatisticPersistence {
 
 	private static String host = "localhost";
-	private static String base = "agp1";
+	private static String base = "agp";
 	private static String user = "root";
 	private static String password = "";
 	private static String url = "jdbc:mysql://" + host + "/" + base;
@@ -79,11 +80,10 @@ public class JdbcPersistence implements StatisticPersistence {
 	 */
 	@Override
 	public List<Hotel> readHotel(String priceHotel) {
-		Hotel readHotel = new Hotel();
 		List<Hotel> hotels = new ArrayList<Hotel>();
 		try {
 
-			String selectHotelQuery = "SELECT * FROM Hotel AS h WHERE h.price_per_night = ?";
+			String selectHotelQuery = "SELECT * FROM Hotel AS h WHERE h.price_per_night <= ?";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(selectHotelQuery);
 
@@ -92,6 +92,7 @@ public class JdbcPersistence implements StatisticPersistence {
 			ResultSet result = preparedStatement.executeQuery();
 
 			while (result.next()) {
+				Hotel readHotel = new Hotel();
 				readHotel.setId(result.getString("id"));
 				readHotel.setName(result.getString("name_hotel"));
 				readHotel.setIdIsle(result.getString("id_isle"));
@@ -99,7 +100,7 @@ public class JdbcPersistence implements StatisticPersistence {
 				readHotel.setPrice(result.getString("price_per_night"));
 				hotels.add(readHotel);
 				
-				System.out.println(readHotel.toString());
+				//System.out.println(readHotel.toString());
 				
 //				System.out.println(result.getString("id"));
 //				System.out.println(result.getString("id_isle"));
@@ -122,8 +123,8 @@ public class JdbcPersistence implements StatisticPersistence {
 	 * This method returns a limit of number of Historistic site
 	 */
 	@Override
-	public HistoricSite readSite(int numberOfHistoricSites) {
-		HistoricSite readSite = new HistoricSite();
+	public List<TouristicSite> readSite(int numberOfHistoricSites) {
+		List<TouristicSite> historics = new ArrayList<TouristicSite>();
 		try {
 
 			String selectHistoricSiteQuery = "SELECT * FROM TouristicSites AS ts WHERE ts.type_site ='HistoricSite' LIMIT " 
@@ -134,12 +135,14 @@ public class JdbcPersistence implements StatisticPersistence {
 			ResultSet result = preparedStatement.executeQuery();
 
 			while (result.next()) {
+				HistoricSite readSite = new HistoricSite();
 				readSite.setId(result.getString("id_site"));
 				readSite.setName(result.getString("name_site"));
+				readSite.setIdIsle(result.getString("id_isle"));
 				readSite.setPrice(result.getString("price"));
 				readSite.setVisitTime(result.getString("visit_time"));
-				
-				System.out.println(readSite.toString());
+				historics.add(readSite);
+				//System.out.println(readSite.toString());
 			}
 
 			
@@ -150,15 +153,15 @@ public class JdbcPersistence implements StatisticPersistence {
 		}
 		
 		
-		return readSite;
+		return historics;
 	}
 	
 	/**
 	 * This method returns a limit of number of activity
 	 */
 	@Override
-	public Activity readActivity(int numberOfSearchActivity) {
-		Activity readActivity = new Activity();
+	public List<TouristicSite> readActivity(int numberOfSearchActivity) {
+		List<TouristicSite> activities = new ArrayList<TouristicSite>();
 		try {
 
 			String selectActivityQuery = "SELECT * FROM TouristicSites AS ts WHERE ts.type_site ='HistoricSite' LIMIT " 
@@ -169,12 +172,14 @@ public class JdbcPersistence implements StatisticPersistence {
 			ResultSet result = preparedStatement.executeQuery();
 
 			while (result.next()) {
+				Activity readActivity = new Activity();
 				readActivity.setId(result.getString("id_site"));
 				readActivity.setName(result.getString("name_site"));
+				readActivity.setIdIsle(result.getString("id_isle"));
 				readActivity.setPrice(result.getString("price"));
 				readActivity.setVisitTime(result.getString("visit_time"));
-				
-				System.out.println(readActivity.toString());
+				activities.add(readActivity);
+				//System.out.println(readActivity.toString());
 				
 			}
 
@@ -186,7 +191,7 @@ public class JdbcPersistence implements StatisticPersistence {
 		}
 		
 		
-		return readActivity;
+		return activities;
 	}
 
 }

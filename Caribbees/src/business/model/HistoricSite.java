@@ -10,4 +10,12 @@ public class HistoricSite extends TouristicSite {
 		super(id, name, idIsle, price, visitTime);
 	}
 
+	@Override
+	public String toString() {
+		return "HistoricSite [id=" + id + ", name=" + name + ", idIsle=" + idIsle + ", price=" + price + ", visitTime="
+				+ visitTime + "]";
+	}
+	
+	
+
 }
