@@ -21,7 +21,7 @@ public class BDeManager {
 		sites.add(site);
 	}
 
-	public List<TouristicSite> getSite() {
+	public List<TouristicSite> getSites() {
 		return sites;
 	}
 
@@ -44,7 +44,7 @@ public class BDeManager {
 	
 	public String toStringSites() {
 		return "BDeManager [getSite()="
-				+ getSite() + "]";
+				+ getSites() + "]";
 	}
 	
 	

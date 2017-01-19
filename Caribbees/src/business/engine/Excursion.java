@@ -18,6 +18,11 @@ public class Excursion {
 	public List<TouristicSite> getSites() {
 		return sites;
 	}
+	
+	public void clearList() {
+		sites.clear();
+		transports.clear();
+	}
 
 	public void setSites(List<TouristicSite> sites) {
 		this.sites = sites;
