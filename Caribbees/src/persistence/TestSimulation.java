@@ -21,17 +21,23 @@ public class TestSimulation {
 		
 		int total=3;
 		
-		List<TouristicSite> site = new ArrayList<TouristicSite>();
-		site = simulation.readSite(total);
-		for(int i=0; i<site.size(); i++) {
-			System.out.println(site.get(i).toString());
-		}
+//		List<TouristicSite> site = new ArrayList<TouristicSite>();
+//		site = simulation.readSite(total);
+//		for(int i=0; i<site.size(); i++) {
+//			System.out.println(site.get(i).toString());
+//		}
 		
 		//simulation.countSite();
 		
 		//System.out.println("hello1");
 				
 		//simulation.readHotel(price);
+		
+		List<List<String>> touristicSites = new ArrayList<List<String>>();
+		touristicSites = simulation.readTouristicSite("2");
+		for(int i=0; i<touristicSites.size(); i++) {
+			System.out.println(touristicSites.get(i).toString());
+		}
 		
 	}
 

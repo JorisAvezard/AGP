@@ -19,4 +19,5 @@ public interface StatisticPersistence {
 	List<Hotel> readHotel(String priceHotel);
 	List<TouristicSite> readSite(int numberOfSites);
 	List<TouristicSite> readActivity(int numberOfSites);
+	List<List<String>> readTouristicSite(String keyWord);
 }
