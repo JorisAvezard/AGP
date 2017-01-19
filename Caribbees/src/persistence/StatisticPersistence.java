@@ -7,17 +7,20 @@ import business.model.TouristicSite;
 
 /**
  * 
- * @author phcar
- * 
- * General interface for persistence APIs.
- * Contains the methods in the class JdbcPersistence.java 
+ * General interface for persistence APIs. Contains the methods in the class
+ * JdbcPersistence.java
  *
  */
 public interface StatisticPersistence {
 
 	int countSite();
+
 	List<Hotel> readHotel(String priceHotel);
+
 	List<TouristicSite> readSite(int numberOfSites);
+
 	List<TouristicSite> readActivity(int numberOfSites);
+
 	List<List<String>> readTouristicSite(String keyWord);
+
 }
