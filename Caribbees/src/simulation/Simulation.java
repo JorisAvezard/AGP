@@ -94,7 +94,8 @@ public class Simulation {
 						System.out.println("\nDAY " + v + " :");
 					}
 				}
-				System.out.println(excursion.getSites().get(k).getName() + ", prix : " + excursion.getSites().get(k).getPrice() + ", prix du transport : " + excursion.getTransports().get(k).getPricePerHour()*excursion.getTransports().get(k).getTimeOfUse());
+				String[] split = String.valueOf(excursion.getTransports().get(k).getClass()).split("\\.");
+				System.out.println(excursion.getSites().get(k).getName() + ", prix : " + excursion.getSites().get(k).getPrice() + ", prix du transport : " + excursion.getTransports().get(k).getPricePerHour()*excursion.getTransports().get(k).getTimeOfUse() + ", transport : " + split[2]);
 			}
 			System.out.println("\nPrix total du séjour : " + price);
 			System.out.println("\n---------------------------------------------------------------------\n");
@@ -175,12 +176,6 @@ public class Simulation {
 		//System.out.println(manager.toStringSites());
 		createTravel(budget);
 		
-	}
-	
-	public static void main(String[] strings) {
-		SimulationEntry entry = new SimulationEntry("???", 200, "water historic popi");
-		Simulation simulation = new Simulation(entry);
-		simulation.simulate();
 	}
 
 }

@@ -41,7 +41,7 @@ public class LuceneUtility {
 		for (ScoreDoc scoreDoc : hits.scoreDocs) {
 			List<String> resultIdScore = new ArrayList<String>();
 			Document doc = searcher.getDocument(scoreDoc);
-			System.out.println(scoreDoc.score);
+			//System.out.println(scoreDoc.score);
 			System.out.println("File: " + doc.get(LuceneConstants.FILE_PATH));
 
 			f = new File(doc.get(LuceneConstants.FILE_PATH));
