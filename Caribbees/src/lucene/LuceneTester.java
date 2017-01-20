@@ -15,7 +15,7 @@ public class LuceneTester {
 		try {
 			tester = new LuceneUtility();
 			tester.createIndex();
-			tester.search("nuage blabla");
+			tester.search("activity");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
