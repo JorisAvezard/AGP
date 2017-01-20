@@ -35,7 +35,7 @@ public class JdbcPersistence implements StatisticPersistence {
 	public JdbcPersistence() {
 		prepareConnection();
 	}
-
+	
 	private void prepareConnection() {
 		if (connection == null) {
 			try {
@@ -54,7 +54,7 @@ public class JdbcPersistence implements StatisticPersistence {
 	public int countSite() {
 		int count = 0;
 		try {
-
+			//Initialisation of query
 			String selectCountQuery = "SELECT count(*) AS co FROM TouristicSites";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(selectCountQuery);
@@ -81,7 +81,7 @@ public class JdbcPersistence implements StatisticPersistence {
 	public List<Hotel> readHotel(int priceHotel) {
 		List<Hotel> hotels = new ArrayList<Hotel>();
 		try {
-
+			//Initialisation of query
 			String selectHotelQuery = "SELECT * FROM Hotel AS h WHERE h.price_per_night <= ?";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(selectHotelQuery);
@@ -123,7 +123,7 @@ public class JdbcPersistence implements StatisticPersistence {
 	public List<TouristicSite> readSite(int numberOfHistoricSites) {
 		List<TouristicSite> historics = new ArrayList<TouristicSite>();
 		try {
-
+			//Initialisation of query
 			String selectHistoricSiteQuery = "SELECT * FROM TouristicSites AS ts WHERE ts.type_site ='HistoricSite' LIMIT "
 					+ numberOfHistoricSites + "";
 
@@ -158,7 +158,7 @@ public class JdbcPersistence implements StatisticPersistence {
 	public List<TouristicSite> readActivity(int numberOfSearchActivity) {
 		List<TouristicSite> activities = new ArrayList<TouristicSite>();
 		try {
-
+			//Initialisation of query
 			String selectActivityQuery = "SELECT * FROM TouristicSites AS ts WHERE ts.type_site ='Activity' LIMIT "
 					+ numberOfSearchActivity + "";
 
@@ -195,6 +195,7 @@ public class JdbcPersistence implements StatisticPersistence {
 		List<TouristicSite> touristicSites = new ArrayList<TouristicSite>();
 		for(int i=0;i<keyIds.size();i++) {
 			try {
+				//Initialisation of query
 				String keyId = keyIds.get(i);
 				String selectSiteQuery = "SELECT * FROM TouristicSites AS ts WHERE ts.id_site = " + keyId + "";
 	
@@ -234,6 +235,7 @@ public class JdbcPersistence implements StatisticPersistence {
 		List<TouristicSite> touristicSites = new ArrayList<TouristicSite>();
 		
 		try {
+			//Initialisation of query
 			String selectSiteQuery = "SELECT * FROM TouristicSites";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(selectSiteQuery);
