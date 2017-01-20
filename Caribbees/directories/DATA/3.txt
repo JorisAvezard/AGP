@@ -1,0 +1,16 @@
+isle: dominique
+type: Historic Site
+description:
+Dominica's most notable historian, Lennox Honychurch, has been responsible for much of the museum.
+The Dominica Museum contains general items related to the cultural and social history and geology and archeology of Dominica.
+These include old photographs, photographs and portraits of past rulers, colonial furniture, including a chair and old cabinet and a barometer,
+ specimens of birds and fishes, colonial agricultural items and indigenous cultural articles including the Pwi pwi, a miniature form of raft,
+ a replica of a Carib hut and Arawak pottery and tools.[7][8][2] Of note are some stone axes, some of them reaching 9 inches in length.
+The museums also contains displays related to the Volcanology of the island, and artifacts related to the early settlers also include oars,
+domestic implements, wooden figurines and old musical instruments
+keyword: 
+Museum
+culture
+history
+colonization
+

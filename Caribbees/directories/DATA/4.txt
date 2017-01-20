@@ -1,0 +1,20 @@
+isle: dominique
+type site: Historic Site
+
+titou gorge , ti tou gorge 
+description:
+The hike through Titou Gorge, is actually a short swim from the base of a waterfall through 
+a series of natural "rooms and ponds" formed by high cliff walls canopied by interlaced trees.
+ The undulating sides of this deep, 
+narrow gorge were formed as molten lava cooled and split apart.
+
+The swim is short, only about five minutes, and the canopied light filtering down the mountainside within
+ the gorge is spectacular. A hot spring tumbles down a short wall just outside the entrance of the gorge,
+ which feels wonderful after the cool waters of the falls!
+
+
+keyword:
+water
+Swim
+nature
+popular
