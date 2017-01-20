@@ -21,6 +21,6 @@ public interface StatisticPersistence {
 
 	List<TouristicSite> readActivity(int numberOfSites);
 
-	List<List<String>> readTouristicSite(String keyWord);
+	List<TouristicSite> readTouristicSite(List<String> keyIds);
 
 }

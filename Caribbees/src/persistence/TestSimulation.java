@@ -14,9 +14,11 @@ public class TestSimulation {
 
 	public static void main(String[] args) {
 		JdbcPersistence simulation = new JdbcPersistence();
-
-		List<List<String>> touristicSites = new ArrayList<List<String>>();
-		touristicSites = simulation.readTouristicSite("2");
+		List<String> ids = new ArrayList<String>();
+		ids.add("3");
+		ids.add("9");
+		List<TouristicSite> touristicSites = new ArrayList<TouristicSite>();
+		touristicSites = simulation.readTouristicSite(ids);
 		for (int i = 0; i < touristicSites.size(); i++) {
 			System.out.println(touristicSites.get(i).toString());
 		}

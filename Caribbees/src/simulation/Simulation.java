@@ -1,7 +1,10 @@
 package simulation;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.lucene.queryParser.ParseException;
 
 import business.engine.Excursion;
 import business.engine.Travel;
@@ -11,6 +14,7 @@ import business.model.Hotel;
 import business.model.SimulationEntry;
 import business.model.TouristicSite;
 import business.model.Transport;
+import lucene.LuceneUtility;
 import persistence.JdbcPersistence;
 
 public class Simulation {
@@ -98,30 +102,44 @@ public class Simulation {
 	}
 	
 	public void simulate() {
-		String keyWord = entry.getKeyword();
-		int budget = entry.getBudget();
 		String comfort = entry.getStanding();
+		int budget = entry.getBudget();
+		String keyWord = entry.getKeyword();
+		List<String> index = new ArrayList<String>();
 //		System.out.println(budget);
 		JdbcPersistence jdbc = new JdbcPersistence();
+		LuceneUtility lucene;
 		manager.setHotels(jdbc.readHotel(budget));
 //		System.out.println(manager.toStringHotels());
-		int nbActivities = getRandomNumber(0,5);
-		int nbHistoricSite = 5-nbActivities;
-		sites = jdbc.readActivity(nbActivities);
-		for(int l=0;l<sites.size();l++) {
-			manager.addSite(sites.get(l));
+//		int nbActivities = getRandomNumber(0,5);
+//		int nbHistoricSite = 5-nbActivities;
+//		sites = jdbc.readActivity(nbActivities);
+//		for(int l=0;l<sites.size();l++) {
+//			manager.addSite(sites.get(l));
+//		}
+//		sites = jdbc.readSite(nbHistoricSite);
+//		for(int k=0;k<sites.size();k++) {
+//			manager.addSite(sites.get(k));
+//		}
+		try {
+			lucene = new LuceneUtility();
+			lucene.createIndex();
+			index = lucene.search(keyWord);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
-		sites = jdbc.readSite(nbHistoricSite);
-		for(int k=0;k<sites.size();k++) {
-			manager.addSite(sites.get(k));
-		}
+		System.out.println(index.toString());
+		manager.setSite(jdbc.readTouristicSite(index));
+		
 		//System.out.println(manager.toStringSites());
 		createTravel(budget);
 		
 	}
 	
 	public static void main(String[] strings) {
-		SimulationEntry entry = new SimulationEntry("???", 5000, "???");
+		SimulationEntry entry = new SimulationEntry("???", 5000, "water historic popi");
 		Simulation simulation = new Simulation(entry);
 		simulation.simulate();
 	}

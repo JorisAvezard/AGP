@@ -21,7 +21,7 @@ public class LuceneUtility {
 	File f = null;
 	List<String> resultId = new ArrayList<String>();
 
-	void createIndex() throws IOException {
+	public void createIndex() throws IOException {
 		indexer = new Indexer(LuceneConstants.INDEX_DIRECTORY);
 		int numIndexed;
 		long startTime = System.currentTimeMillis();
@@ -31,7 +31,7 @@ public class LuceneUtility {
 		System.out.println(numIndexed + " File indexed, time taken: " + (endTime - startTime) + " ms");
 	}
 
-	List<String> search(String searchQuery) throws IOException, ParseException {
+	public List<String> search(String searchQuery) throws IOException, ParseException {
 		searcher = new Searcher(LuceneConstants.INDEX_DIRECTORY);
 		long startTime = System.currentTimeMillis();
 		TopDocs hits = searcher.search(searchQuery);

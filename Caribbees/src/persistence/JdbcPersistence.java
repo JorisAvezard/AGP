@@ -191,33 +191,40 @@ public class JdbcPersistence implements StatisticPersistence {
 	 * This method returns a list of touristic site
 	 */
 	@Override
-	public List<List<String>> readTouristicSite(String keyId) {
-		List<List<String>> touristicSites = new ArrayList<List<String>>();
-		try {
-
-			String selectSiteQuery = "SELECT * FROM TouristicSites AS ts WHERE ts.id_site = " + keyId + "";
-
-			PreparedStatement preparedStatement = connection.prepareStatement(selectSiteQuery);
-
-			ResultSet result = preparedStatement.executeQuery();
-
-			while (result.next()) {
-				List<String> readTouristicSite = new ArrayList<String>();
-				readTouristicSite.add(result.getString("id_site"));
-				readTouristicSite.add(result.getString("name_site"));
-				readTouristicSite.add(result.getString("id_isle"));
-				readTouristicSite.add(result.getString("type_site"));
-				readTouristicSite.add(result.getString("price"));
-				readTouristicSite.add(result.getString("visit_time"));
-				touristicSites.add(readTouristicSite);
-				// System.out.println(readActivity.toString());
-
+	public List<TouristicSite> readTouristicSite(List<String> keyIds) {
+		List<TouristicSite> touristicSites = new ArrayList<TouristicSite>();
+		for(int i=0;i<keyIds.size();i++) {
+			try {
+				String keyId = keyIds.get(i);
+				String selectSiteQuery = "SELECT * FROM TouristicSites AS ts WHERE ts.id_site = " + keyId + "";
+	
+				PreparedStatement preparedStatement = connection.prepareStatement(selectSiteQuery);
+	
+				ResultSet result = preparedStatement.executeQuery();
+	
+				while (result.next()) {
+					TouristicSite touristicSite;
+					if(result.getString("type_site").equals("Activity")) {
+						touristicSite = new Activity();
+					}
+					else {
+						touristicSite = new HistoricSite();
+					}
+					touristicSite.setId(result.getString("id_site"));
+					touristicSite.setName(result.getString("name_site"));
+					touristicSite.setIdIsle(result.getString("id_isle"));
+					touristicSite.setPrice(result.getString("price"));
+					touristicSite.setVisitTime(result.getString("visit_time"));
+					touristicSites.add(touristicSite);
+					// System.out.println(readActivity.toString());
+	
+				}
+	
+				preparedStatement.close();
+	
+			} catch (SQLException se) {
+				System.err.println(se.getMessage());
 			}
-
-			preparedStatement.close();
-
-		} catch (SQLException se) {
-			System.err.println(se.getMessage());
 		}
 
 		return touristicSites;
