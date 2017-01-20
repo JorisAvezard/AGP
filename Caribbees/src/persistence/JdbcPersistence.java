@@ -229,5 +229,43 @@ public class JdbcPersistence implements StatisticPersistence {
 
 		return touristicSites;
 	}
+	
+	public List<TouristicSite> readTouristicSite() {
+		List<TouristicSite> touristicSites = new ArrayList<TouristicSite>();
+		
+		try {
+			String selectSiteQuery = "SELECT * FROM TouristicSites";
+
+			PreparedStatement preparedStatement = connection.prepareStatement(selectSiteQuery);
+
+			ResultSet result = preparedStatement.executeQuery();
+
+			while (result.next()) {
+				TouristicSite touristicSite;
+				if(result.getString("type_site").equals("Activity")) {
+					touristicSite = new Activity();
+				}
+				else {
+					touristicSite = new HistoricSite();
+				}
+				touristicSite.setId(result.getString("id_site"));
+				touristicSite.setName(result.getString("name_site"));
+				touristicSite.setIdIsle(result.getString("id_isle"));
+				touristicSite.setPrice(result.getString("price"));
+				touristicSite.setVisitTime(result.getString("visit_time"));
+				touristicSites.add(touristicSite);
+				// System.out.println(readActivity.toString());
+
+			}
+
+			preparedStatement.close();
+
+		} catch (SQLException se) {
+			System.err.println(se.getMessage());
+		}
+		
+
+		return touristicSites;
+	}
 
 }

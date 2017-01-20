@@ -19,7 +19,7 @@ public class LuceneUtility {
 	Searcher searcher;
 
 	File f = null;
-	List<String> resultId = new ArrayList<String>();
+	List<List<String>> result = new ArrayList<List<String>>();
 
 	public void createIndex() throws IOException {
 		indexer = new Indexer(LuceneConstants.INDEX_DIRECTORY);
@@ -31,7 +31,7 @@ public class LuceneUtility {
 		System.out.println(numIndexed + " File indexed, time taken: " + (endTime - startTime) + " ms");
 	}
 
-	public List<String> search(String searchQuery) throws IOException, ParseException {
+	public List<List<String>> search(String searchQuery) throws IOException, ParseException {
 		searcher = new Searcher(LuceneConstants.INDEX_DIRECTORY);
 		long startTime = System.currentTimeMillis();
 		TopDocs hits = searcher.search(searchQuery);
@@ -39,20 +39,24 @@ public class LuceneUtility {
 
 		System.out.println(hits.totalHits + " documents found. Time :" + (endTime - startTime));
 		for (ScoreDoc scoreDoc : hits.scoreDocs) {
+			List<String> resultIdScore = new ArrayList<String>();
 			Document doc = searcher.getDocument(scoreDoc);
+			System.out.println(scoreDoc.score);
 			System.out.println("File: " + doc.get(LuceneConstants.FILE_PATH));
 
 			f = new File(doc.get(LuceneConstants.FILE_PATH));
 
 			String[] s = f.getName().split("\\.");
-			resultId.add(s[0]);
+			resultIdScore.add(s[0]);
+			resultIdScore.add(String.valueOf(scoreDoc.score));
+			result.add(resultIdScore);
 		}
 		searcher.close();
 
-		for (int i = 0; i < resultId.size(); i++)
-			System.out.println("Élément à l'index " + i + " = " + resultId.get(i));
+		for (int i = 0; i < result.size(); i++)
+			System.out.println("Élément à l'index " + i + " = " + result.get(i).get(0));
 
-		return resultId;
+		return result;
 	}
 	
 	

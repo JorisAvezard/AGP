@@ -101,12 +101,52 @@ public class Simulation {
 		}
 	}
 	
+	public List<TouristicSite> sortingPerScore(List<TouristicSite> touristicSite, List<List<String>> idScore) {
+		List<TouristicSite> site = new ArrayList<TouristicSite>();
+		float score;
+		String id = "";
+		int id_table = 0;
+		for(int y=0;y<touristicSite.size();y++) {
+			score = 0;
+			for(int i=0;i<idScore.size();i++) {
+				if(Float.parseFloat(idScore.get(i).get(1)) > score ) {
+					score = Float.parseFloat(idScore.get(i).get(1));
+					id = idScore.get(i).get(0);
+					id_table = i;
+				}
+			}
+			idScore.remove(id_table);
+			for(int j=0;j<touristicSite.size();j++) {
+				if(touristicSite.get(j).getId().equals(id)) {
+					site.add(touristicSite.get(j));
+				}
+			}
+		}
+		return site;
+	}
+	
+	public List<TouristicSite> order(List<List<String>> idScore, List<TouristicSite> touristicSites) {
+		List<TouristicSite> touristicSiteOrder = new ArrayList<TouristicSite>();
+		List<TouristicSite> touristicSiteNoOrder = new ArrayList<TouristicSite>();
+		for(int i=0; i<touristicSites.size(); i++) {
+			for(int j=0; j<idScore.size(); j++) {
+				if(touristicSites.get(i).getId().equals(idScore.get(j).get(0))) {
+					touristicSiteNoOrder.add(touristicSites.get(i));
+				}
+			}
+		}
+		touristicSiteOrder = sortingPerScore(touristicSiteNoOrder, idScore);
+		return touristicSiteOrder;
+		
+	}
+	
 	public void simulate() {
 		String comfort = entry.getStanding();
 		int budget = entry.getBudget();
 		String keyWord = entry.getKeyword();
-		List<String> index = new ArrayList<String>();
-//		System.out.println(budget);
+		List<List<String>> index = new ArrayList<List<String>>();
+		List<TouristicSite> touristicSite = new ArrayList<TouristicSite>();
+ //		System.out.println(budget);
 		JdbcPersistence jdbc = new JdbcPersistence();
 		LuceneUtility lucene;
 		manager.setHotels(jdbc.readHotel(budget));
@@ -130,16 +170,15 @@ public class Simulation {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		System.out.println(index.toString());
-		manager.setSite(jdbc.readTouristicSite(index));
-		
+		touristicSite = (jdbc.readTouristicSite());
+		manager.setSite(order(index, touristicSite));
 		//System.out.println(manager.toStringSites());
 		createTravel(budget);
 		
 	}
 	
 	public static void main(String[] strings) {
-		SimulationEntry entry = new SimulationEntry("???", 5000, "water historic popi");
+		SimulationEntry entry = new SimulationEntry("???", 200, "water historic popi");
 		Simulation simulation = new Simulation(entry);
 		simulation.simulate();
 	}
