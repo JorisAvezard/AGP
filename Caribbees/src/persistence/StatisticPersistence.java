@@ -13,7 +13,13 @@ import business.model.TouristicSite;
  */
 public interface StatisticPersistence {
 
-	List<Hotel> readHotel(String priceHotel);
+	int countSite();
+
+	List<Hotel> readHotel(int priceHotel);
+
+	List<TouristicSite> readSite(int numberOfSites);
+
+	List<TouristicSite> readActivity(int numberOfSites);
 
 	List<List<String>> readTouristicSite(String keyWord);
 

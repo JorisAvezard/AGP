@@ -30,7 +30,7 @@ public class Simulation {
 		return (int) (Math.random() * (max + 1 - min)) + min;
 	}
 	
-	public void createTravel(String budget) {
+	public void createTravel(int budget) {
 		List<String> morning = new ArrayList<String>();
 		for(int i=0; i<manager.getHotels().size();i++) {
 			int price = 0;
@@ -42,7 +42,7 @@ public class Simulation {
 			Excursion excursion = new Excursion();
 			excursion.clearList();
 			hotel = manager.getHotels().get(i);
-			price+=Integer.parseInt(hotel.getPrice());
+			price+=hotel.getPrice();
 			for(int z=0; z<manager.getSites().size(); z++) {
 				TouristicSite site = manager.getSites().get(z);
 				Transport transport;
@@ -55,10 +55,10 @@ public class Simulation {
 				else {
 					night++;
 					timeOfDay = 0;
-					price+=Integer.parseInt(hotel.getPrice());
+					price+=hotel.getPrice();
 					beginningDay = true;
 				}
-				if(price + Integer.parseInt(site.getPrice()) < Integer.parseInt(budget)) {
+				if(price + Integer.parseInt(site.getPrice()) < budget) {
 					if(manager.getHotels().get(i).getIdIsle().equals(site.getIdIsle())) {
 						int nb = getRandomNumber(1, 5);
 						transport = new Bus(5, nb);
@@ -99,7 +99,7 @@ public class Simulation {
 	
 	public void simulate() {
 		String keyWord = entry.getKeyword();
-		String budget = entry.getBudget();
+		int budget = entry.getBudget();
 		String comfort = entry.getStanding();
 //		System.out.println(budget);
 		JdbcPersistence jdbc = new JdbcPersistence();
@@ -121,7 +121,7 @@ public class Simulation {
 	}
 	
 	public static void main(String[] strings) {
-		SimulationEntry entry = new SimulationEntry("???", "5000", "???");
+		SimulationEntry entry = new SimulationEntry("???", 5000, "???");
 		Simulation simulation = new Simulation(entry);
 		simulation.simulate();
 	}

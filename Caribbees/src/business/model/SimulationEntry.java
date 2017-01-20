@@ -3,14 +3,14 @@ package business.model;
 public class SimulationEntry {
 	
 	private String standing;
-	private String budget;
+	private int budget;
 	private String keyword;
 	
 	public SimulationEntry() {
 		
 	}
 	
-	public SimulationEntry(String standing, String budget, String keyword) {
+	public SimulationEntry(String standing, int budget, String keyword) {
 		this.standing = standing;
 		this.budget = budget;
 		this.keyword = keyword;
@@ -24,11 +24,11 @@ public class SimulationEntry {
 		this.standing = standing;
 	}
 
-	public String getBudget() {
+	public int getBudget() {
 		return budget;
 	}
 
-	public void setBudget(String budget) {
+	public void setBudget(int budget) {
 		this.budget = budget;
 	}
 

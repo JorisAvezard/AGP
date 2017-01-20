@@ -6,13 +6,13 @@ public class Hotel {
 	private String name;
 	private String idIsle;
 	private String standing;
-	private String price;
+	private int price;
 	
 	public Hotel() {
 		
 	}
 	
-	public Hotel(String id, String name, String idIsle, String standing, String price) {
+	public Hotel(String id, String name, String idIsle, String standing, int price) {
 		this.id = id;
 		this.name = name;
 		this.idIsle = idIsle;
@@ -44,11 +44,11 @@ public class Hotel {
 		this.standing = standing;
 	}
 
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
