@@ -3,10 +3,10 @@
 CREATE TABLE TouristicSites (
 	id_site INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	name_site VARCHAR(50),
-	id_isle varchar(20),
+	id_isle INT,
 	type_site ENUM('Activity','HistoricSite'),
-    price varchar(20),
-	visit_time varchar(20),
+    price INT,
+	visit_time INT,
 	FOREIGN KEY (id_isle) REFERENCES id_isle(Isle)
 );
 
@@ -20,16 +20,16 @@ CREATE TABLE Transport (
 
 	id_transport INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	type_transport ENUM('Boat','Bus'),
-	price varchar(20),
-	time_transport varchar(20)
+	price INT,
+	time_transport INT
 );
 
 CREATE TABLE Hotel (
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	name_hotel VARCHAR(50),
-	id_isle varchar(20),
-	standing varchar(20),
-	price_per_night varchar(20),
+	id_isle INT,
+	standing INT,
+	price_per_night INT,
 	FOREIGN KEY (id_isle) REFERENCES id_isle(Isle)
 );
 
@@ -37,7 +37,7 @@ CREATE TABLE Hotel (
 CREATE TABLE TransitTimeSS (
 	begin_place varchar(50),
 	end_place varchar(50),
-	transit_time varchar(20),
+	transit_time INT,
 	FOREIGN KEY (begin_place) REFERENCES TouristicSites(name_site),
 	FOREIGN KEY (end_place) REFERENCES TouristicSites(name_site)
 
@@ -47,7 +47,7 @@ CREATE TABLE TransitTimeSS (
 CREATE TABLE TransitTimeSH (
 	begin_place varchar(50),
 	end_place varchar(50),
-	transit_time varchar(20),
+	transit_time INT,
 	FOREIGN KEY (begin_place) REFERENCES TouristicSites(name_site),
 	
 		FOREIGN KEY (end_place) REFERENCES Hotel(name_hotel)
