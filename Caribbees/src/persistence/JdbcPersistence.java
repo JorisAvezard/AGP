@@ -159,7 +159,7 @@ public class JdbcPersistence implements StatisticPersistence {
 		List<TouristicSite> activities = new ArrayList<TouristicSite>();
 		try {
 
-			String selectActivityQuery = "SELECT * FROM TouristicSites AS ts WHERE ts.type_site ='HistoricSite' LIMIT "
+			String selectActivityQuery = "SELECT * FROM TouristicSites AS ts WHERE ts.type_site ='Activity' LIMIT "
 					+ numberOfSearchActivity + "";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(selectActivityQuery);
